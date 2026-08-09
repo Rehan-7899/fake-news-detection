@@ -1,0 +1,23 @@
+[project]
+name = "fake-news-detection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rehan-7899", email = "rehanshkh106@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "nltk>=3.10.2",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "regex>=2026.7.19",
+    "scikit-learn>=1.9.0",
+]
+
+[project.scripts]
+fake-news-detection = "fake_news_detection:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
