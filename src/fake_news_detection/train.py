@@ -29,7 +29,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 tf_idf = TfidfVectorizer(min_df=5)
 
 X_train_tfidf = tf_idf.fit_transform(X_train)
-X_train_tfidf = tf_idf.transform(X_test)
+X_test_tfidf = tf_idf.transform(X_test)
 
 #Train Model
 lr_model = LogisticRegression(max_iter=1000)
