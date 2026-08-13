@@ -1,9 +1,9 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI , HTTPException
 import joblib
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class PredictRequest(BaseModel):
-    text: str
+    text: str=Field(..., min_length=10)
 
 
 from fake_news_detection.preprocessing import preprocessing_data
@@ -22,7 +22,14 @@ def home():
 def predict(request: PredictRequest):
     processed_text = preprocessing_data(request.text)
     
-    X = tf_idf.transform([processed_text]) 
+    try:
+        X = tf_idf.transform([processed_text])
+    
+    except  Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail="Text contain no usable content."
+        ) 
     
     prediction = model.predict(X)[0].item()
    
